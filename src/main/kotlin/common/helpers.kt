@@ -6,6 +6,7 @@ import kotlin.reflect.KClass
 fun parse(str: String, type: KClass<*>): Any {
     val v = when (type) {
         Int::class -> str.toInt()
+        Long::class -> str.toLong()
         Double::class -> str.toDouble()
         String::class -> str
         else -> throw UnsupportedOperationException()
