@@ -3,6 +3,13 @@ package one.pre.common
 import java.io.File
 import kotlin.reflect.KClass
 
+val directions = listOf(
+    0 to 1,
+    0 to -1,
+    1 to 0,
+    -1 to 0
+)
+
 fun parse(str: String, type: KClass<*>): Any {
     val v = when (type) {
         Int::class -> str.toInt()
@@ -37,8 +44,8 @@ fun split(line: String, separator: String? = null): List<String> {
 
 fun openFile(path: String) = File("C:/github/adventofcode/src/main/kotlin/$path")
 
-//fun add(pos1: Pair<Int, Int>, pos2: Pair<Int, Int>) = pos1.first + pos2.first to pos1.second + pos2.second
-fun add(pos1: Pair<Long, Long>, pos2: Pair<Long, Long>) = pos1.first + pos2.first to pos1.second + pos2.second
+fun addInt(pos1: Pair<Int, Int>, pos2: Pair<Int, Int>) = pos1.first + pos2.first to pos1.second + pos2.second
+fun addLong(pos1: Pair<Long, Long>, pos2: Pair<Long, Long>) = pos1.first + pos2.first to pos1.second + pos2.second
 fun sub(pos1: Pair<Int, Int>, pos2: Pair<Int, Int>) = pos1.first - pos2.first to pos1.second - pos2.second
 fun mul(pos: Pair<Int, Int>, x: Int) = pos.first * x to pos.second * x
 fun div(pos: Pair<Int, Int>, x: Int) = pos.first / x to pos.second / x

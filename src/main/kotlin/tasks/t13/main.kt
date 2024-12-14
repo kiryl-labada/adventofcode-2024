@@ -7,7 +7,7 @@ fun main() {
 
     var result = 0L
     for (i in buttonA.indices) {
-        val r = solve(buttonA[i], buttonB[i], add(prize[i], 10000000000000L to 10000000000000L))
+        val r = solve(buttonA[i], buttonB[i], addLong(prize[i], 10000000000000L to 10000000000000L))
         if (r != null) result += r
     }
     println(result)
