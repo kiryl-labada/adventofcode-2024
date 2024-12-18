@@ -3,13 +3,6 @@ package one.pre.common
 import java.io.File
 import kotlin.reflect.KClass
 
-val directions = listOf(
-    0 to 1,
-    0 to -1,
-    1 to 0,
-    -1 to 0
-)
-
 fun parse(str: String, type: KClass<*>): Any {
     val v = when (type) {
         Int::class -> str.toInt()
@@ -49,3 +42,40 @@ fun addLong(pos1: Pair<Long, Long>, pos2: Pair<Long, Long>) = pos1.first + pos2.
 fun sub(pos1: Pair<Int, Int>, pos2: Pair<Int, Int>) = pos1.first - pos2.first to pos1.second - pos2.second
 fun mul(pos: Pair<Int, Int>, x: Int) = pos.first * x to pos.second * x
 fun div(pos: Pair<Int, Int>, x: Int) = pos.first / x to pos.second / x
+
+typealias Point = Pair<Int, Int>
+
+fun <T> List<List<T>>.get(point: Point) = this[point.first][point.second]!!
+fun <T> List<List<T>>.print(transform: (v: T) -> String) {
+    for (row in this) {
+        for (v in row) {
+            print(transform(v))
+            print(" ")
+        }
+        println()
+    }
+    println()
+}
+
+fun <T> find(map: List<List<T>>, v: T): Point {
+    for (i in map.indices) {
+        for (j in map[i].indices) {
+            if (map[i][j] == v) {
+                return i to j
+            }
+        }
+    }
+    return -1 to -1
+}
+
+typealias Direction = Pair<Int, Int>
+
+val top: Direction = -1 to 0
+val right: Direction = 0 to 1
+val bottom: Direction = 1 to 0
+val left: Direction = 0 to -1
+val directions = listOf<Direction>(top, right, bottom, left)
+
+fun Direction.turnAround() = directions[(directions.indexOf(this) + 2) % directions.size]
+fun Direction.turnLeft() = directions[(directions.indexOf(this) + directions.size - 1) % directions.size]
+fun Direction.turnRight() = directions[(directions.indexOf(this) + 1) % directions.size]

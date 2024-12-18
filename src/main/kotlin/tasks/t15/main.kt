@@ -1,10 +1,6 @@
 package one.pre.tasks.t15
 
-import one.pre.common.addInt
-import one.pre.common.openFile
-import one.pre.common.sub
-
-typealias Point = Pair<Int, Int>
+import one.pre.common.*
 
 fun main() {
     val (map, seq) = read()
@@ -53,17 +49,6 @@ fun transform(map: List<MutableList<Char>>): List<MutableList<Char>> {
     }
 
     return r
-}
-
-fun find(map: List<List<Char>>, v: Char): Point {
-    for (i in map.indices) {
-        for (j in map[i].indices) {
-            if (map[i][j] == v) {
-                return i to j
-            }
-        }
-    }
-    return -1 to -1
 }
 
 fun List<List<Char>>.get(pos: Point) = this[pos.first][pos.second]
